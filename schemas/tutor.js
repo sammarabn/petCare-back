@@ -1,6 +1,5 @@
 import pkg from 'mongoose'
 const {Schema, model} = pkg
-import pet from "./pet.js";
 
 const TutorSchema = new Schema({
     name: {
@@ -19,6 +18,15 @@ const TutorSchema = new Schema({
         require: true,
         select: false,
       },
+      phone: {
+        type: String
+      },
+      pets: [{
+        type: Schema.ObjectId,
+        ref: 'Pet',
+        require: true,
+        foreignField: "_id"
+      }],
       createdAt: {
         type: Date,
         default: Date.now,
@@ -26,10 +34,7 @@ const TutorSchema = new Schema({
       updatedAt: {
         type: Date,
         default: Date.now,
-      },
-    pets:[{
-        type: pet
-    }]
+      }
 });
 
 export default model("Tutor", TutorSchema);
