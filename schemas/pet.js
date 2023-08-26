@@ -1,6 +1,7 @@
 import pkg from 'mongoose'
 const {Schema, model} = pkg
 import { Double } from "mongodb";
+import Medicine from "../schemas/medicine.js"
 
 const  PetSchema = new Schema({
     name: {
@@ -21,23 +22,25 @@ const  PetSchema = new Schema({
         default: "FELINE"
     },
     weight:{
-        type: Double
+        type: Number
     },
     castraded: {
         type: Boolean,
         require: true
     },
     medicines: [{
-        type: Schema.Type.ObjectId,
-        ref: 'Pet',
-        require: true,
+        type: Medicine.schema,
+        ref: 'Medicine',
+        require: false,
         foreignField: "_id"
     }],
     previousSurgeries: [{
-        type: String
+        type: String,
+        require: false
     }],
-    Conditions: [{
-        type: String
+    conditions: [{
+        type: String,
+        require: false
     }]
 });
 

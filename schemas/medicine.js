@@ -1,5 +1,4 @@
 import pkg from 'mongoose';
-import pkg from './pet'
 const {Schema, model} = pkg
 
 const MedicineSchema = new Schema({

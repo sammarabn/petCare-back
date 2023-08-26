@@ -1,10 +1,15 @@
 import pkg from 'mongoose'
 const {Schema, model} = pkg
+import Pet from "../schemas/pet.js"
 
 const TutorSchema = new Schema({
     name: {
         type: String,
         require: true
+    },
+    lastName: {
+      type: String,
+      require: true
     },
     email: {
         type: String,
@@ -22,7 +27,7 @@ const TutorSchema = new Schema({
         type: String
       },
       pets: [{
-        type: Schema.ObjectId,
+        type: Pet.schema,
         ref: 'Pet',
         require: true,
         foreignField: "_id"
